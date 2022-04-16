@@ -15,20 +15,19 @@ public class AdicionarEventoHandler : IRequestHandler<AdicionarEventoRequest, Ad
         _eventoRepository = context;
     }
 
-    public async Task<AdicionarEventoResponse> Handle(AdicionarEventoRequest request, CancellationToken cancellationToken)
+    public async Task<AdicionarEventoResponse> Handle(AdicionarEventoRequest request,
+        CancellationToken cancellationToken)
     {
         var response = new AdicionarEventoResponse();
-        
-        var eventoModel = new Evento(request.Tema, request.Local, request.QuantidadePessoas, request.DataEvento, request.ImagemUrl);
+
+        var eventoModel = new Evento(request.Tema, request.Local, request.QuantidadePessoas, request.DataEvento,
+            request.ImagemUrl);
         eventoModel.AdicionaTelefoneEvento(request.Telefone.Ddd, request.Telefone.Numero);
         eventoModel.AdicionaEmailEvento(request.Email.Email);
 
         if (!eventoModel.IsValid)
         {
-            foreach (var item in eventoModel.Notifications)
-            {
-                response.AddError($"{item.Key}, {item.Message}");
-            }
+            foreach (var item in eventoModel.Notifications) response.AddError($"{item.Key}, {item.Message}");
 
             return response;
         }
@@ -39,6 +38,7 @@ public class AdicionarEventoHandler : IRequestHandler<AdicionarEventoRequest, Ad
             response.AddError("Erro ao adicionar");
             return response;
         }
+
         response.SetSuccess(eventoModel.Id, eventoModel.CreatedAt, eventoModel.UpdatedAt);
         return response;
     }

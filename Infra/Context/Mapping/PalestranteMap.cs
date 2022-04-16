@@ -39,7 +39,7 @@ public class PalestranteMap : IEntityTypeConfiguration<Palestrante>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(200)
             .IsRequired();
-        
+
         builder.OwnsOne(p => p.Telefone, telefone =>
         {
             telefone.Property(p => p.NumeroTelefone)
@@ -75,9 +75,7 @@ public class PalestranteMap : IEntityTypeConfiguration<Palestrante>
                     .HasForeignKey("PalestranteId")
                     .HasConstraintName("FK_PalestranteEvento_PalestranteId")
                     .OnDelete(DeleteBehavior.NoAction));
-        
+
         builder.Ignore(p => p.Notifications);
-
-
     }
 }

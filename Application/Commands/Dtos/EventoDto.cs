@@ -1,4 +1,4 @@
-﻿namespace Nascimento.Software.ProEventos.WebApi.Dtos.EventosDto;
+﻿namespace Application.Commands.Dtos;
 
 public class EventoDto
 {

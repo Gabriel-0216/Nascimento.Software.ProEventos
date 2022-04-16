@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{7D71B9F6-3B2F-4590-9212-650AAE4886C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProEventos.Testing", "ProEventos.Testing\ProEventos.Testing.csproj", "{0DB27B70-2199-4C51-820C-DECD251ABF16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7D71B9F6-3B2F-4590-9212-650AAE4886C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D71B9F6-3B2F-4590-9212-650AAE4886C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D71B9F6-3B2F-4590-9212-650AAE4886C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB27B70-2199-4C51-820C-DECD251ABF16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB27B70-2199-4C51-820C-DECD251ABF16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB27B70-2199-4C51-820C-DECD251ABF16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB27B70-2199-4C51-820C-DECD251ABF16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

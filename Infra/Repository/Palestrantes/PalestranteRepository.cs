@@ -43,15 +43,19 @@ public class PalestranteRepository : IPalestranteRepository
             .ToListAsync();
     }
 
-    public async Task<IEnumerable<Palestrante>> SelecionarPalestrantes()
+    public async Task<IEnumerable<Palestrante>> SelecionarPalestrantes(bool incluirRedeSocial, bool incluirEventos)
     {
-        return await _context.Palestrantes.ToListAsync();
+        IQueryable<Palestrante> query = _context.Palestrantes;
+        if (incluirEventos) query = query.Include(p => p.Eventos);
+        if (incluirRedeSocial) query = query.Include(p => p.RedesSociais);
+
+        return await query.ToListAsync();
     }
 
-    public async Task<Palestrante?> GetPalestranteById(int id)
+    public async Task<Palestrante?> GetPalestranteById(int id, bool asNoTracking)
     {
-        return await _context.Palestrantes
-            .Where(p => p.Id == id)
-            .FirstOrDefaultAsync();
+        IQueryable<Palestrante> query = _context.Palestrantes;
+        if (!asNoTracking) query = query.AsNoTracking();
+        return await query.Where(p => p.Id == id).FirstOrDefaultAsync();
     }
 }

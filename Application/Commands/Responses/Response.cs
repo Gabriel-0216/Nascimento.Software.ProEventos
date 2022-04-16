@@ -11,8 +11,13 @@ public class Response
 
     protected Response()
     {
-        
     }
+
+    public int Id { get; }
+    public DateTime CreatedAt { get; }
+    public DateTime UpdatedAt { get; }
+    public bool Success { get; private set; }
+    public IList<Error> Errors { get; } = new List<Error>();
 
     public void SetSuccess(int id, DateTime createdAt, DateTime updatedAt)
     {
@@ -24,16 +29,19 @@ public class Response
     public void SetSuccess()
     {
         if (Errors.Count > 0) return;
-        
+
         Success = true;
     }
 
-    public void AddError(string error) => Errors.Add(new Error(error));
-    public int Id { get; private set; }
-    public DateTime CreatedAt { get; private set; }
-    public DateTime UpdatedAt { get; private set; }
-    public bool Success { get; private set; } = false;
-    public IList<Error> Errors { get; private set; } = new List<Error>();
+    public void AddErrors(IList<string> errors)
+    {
+        foreach (var item in errors) Errors.Add(new Error(item));
+    }
+
+    public void AddError(string error)
+    {
+        Errors.Add(new Error(error));
+    }
 
     public record Error(string Mensagem);
 }

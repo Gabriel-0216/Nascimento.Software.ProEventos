@@ -50,10 +50,6 @@ public class LoteMap : IEntityTypeConfiguration<Lote>
 
         builder.HasOne(p => p.Evento)
             .WithMany(p => p.Lotes);
-        
-        
-        
-        
 
 
         builder.Ignore(p => p.Notifications);

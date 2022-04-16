@@ -15,7 +15,8 @@ public class AdicionarLoteEventoHandler : IRequestHandler<AdicionarLoteEventoReq
         _eventoRepository = eventoRepository;
     }
 
-    public async Task<AdicionarLoteEventoResponse> Handle(AdicionarLoteEventoRequest request, CancellationToken cancellationToken)
+    public async Task<AdicionarLoteEventoResponse> Handle(AdicionarLoteEventoRequest request,
+        CancellationToken cancellationToken)
     {
         var adicionarLoteResponse = new AdicionarLoteEventoResponse();
         var evento = await _eventoRepository.GetById(request.EventoId, true);
@@ -24,18 +25,16 @@ public class AdicionarLoteEventoHandler : IRequestHandler<AdicionarLoteEventoReq
             adicionarLoteResponse.AddError("Evento não existe");
             return adicionarLoteResponse;
         }
-        
+
         var lote = new Lote(request.Nome, request.Preco, request.DataInicio,
             request.DataFim, request.Quantidade, evento);
         if (!lote.IsValid)
-        {
             foreach (var item in lote.Notifications)
             {
                 adicionarLoteResponse.AddError($"{item.Key}, {item.Message}");
                 return adicionarLoteResponse;
             }
-        }
-                
+
         evento.AdicionarLote(lote);
         var inserted = await _eventoRepository.Update(evento);
         if (inserted)
@@ -44,6 +43,7 @@ public class AdicionarLoteEventoHandler : IRequestHandler<AdicionarLoteEventoReq
             response.SetSuccess();
             return response;
         }
+
         adicionarLoteResponse.AddError("Não foi possível adicionar");
         return adicionarLoteResponse;
     }

@@ -4,6 +4,7 @@ using MediatR;
 
 namespace Application.Commands.Requests;
 
-public class AdicionarEventoRequest : EventoDto, IRequest<AdicionarEventoResponse>
+public class EditarEventoRequest : EventoDto, IRequest<EditarEventoResponse>
 {
+    public int Id { get; set; }
 }

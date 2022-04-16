@@ -22,7 +22,7 @@ public class EventoMap : IEntityTypeConfiguration<Evento>
             .HasColumnName("UpdatedAt")
             .HasColumnType("DATETIME")
             .IsRequired();
-        
+
         builder.Property(p => p.Tema)
             .HasMaxLength(100)
             .HasColumnName("Tema")
@@ -91,8 +91,5 @@ public class EventoMap : IEntityTypeConfiguration<Evento>
                     .OnDelete(DeleteBehavior.NoAction));
 
         builder.Ignore(p => p.Notifications);
-        
-        
-
     }
 }

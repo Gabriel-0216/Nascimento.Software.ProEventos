@@ -34,7 +34,7 @@ public class RedeSocialMap : IEntityTypeConfiguration<RedeSocial>
             .HasColumnType("VARCHAR")
             .HasMaxLength(200)
             .IsRequired();
-        
+
         builder.Ignore(p => p.Notifications);
     }
 }
